@@ -5,7 +5,7 @@ LABEL maintainer="Grégory Van den Borre vandenborre.gregory@hotmail.fr"
 ARG NEXUS_VERSION=3.61.0-02
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
-RUN apt update && apt install -y -q wget
+RUN apk update && apk add wget
 RUN mkdir -p /opt/sonatype/nexus
 
 RUN wget --quiet --output-document=/tmp/nexus.tar.gz "${NEXUS_DOWNLOAD_URL}" && \
@@ -32,7 +32,7 @@ RUN groupadd --gid 200 nexus && \
       --gid 200 \
       nexus
 
-RUN apt remove -y -q wget && apt -q -y autoremove && apt -y -q autoclean
+RUN apk remove wget
 
 RUN chown -R nexus:nexus /nexus-data
 VOLUME /nexus-data
