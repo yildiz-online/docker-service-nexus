@@ -6,6 +6,7 @@ ARG NEXUS_VERSION=3.61.0-02
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
 RUN apt-get update && apt-get install -y -q wget
+RUN mkdir /opt/sonatype/nexus
 
 RUN wget --quiet --output-document=/tmp/nexus.tar.gz "${NEXUS_DOWNLOAD_URL}" && \
     mkdir /tmp/sonatype && \
