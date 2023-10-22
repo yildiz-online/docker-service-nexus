@@ -31,6 +31,8 @@ RUN groupadd --gid 200 nexus && \
       --gid 200 \
       nexus
 
+RUN apt-get remove -y -q wget && apt-get -q -y autoremove && apt-get -y -q autoclean
+
 RUN chown -R nexus:nexus /nexus-data
 VOLUME /nexus-data
 USER nexus
