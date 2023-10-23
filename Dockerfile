@@ -14,9 +14,6 @@ RUN wget --quiet --output-document=/tmp/nexus.tar.gz "${NEXUS_DOWNLOAD_URL}" && 
     mv /tmp/sonatype/nexus-${NEXUS_VERSION} /opt/sonatype/nexus && \
     rm /tmp/nexus.tar.gz
 
-RUN mv /opt/sonatype/sonatype-work/nexus3 /nexus-data && \
-    ln -s /nexus-data /opt/sonatype/sonatype-work/nexus3
-
 RUN sed -i '/^-Xms/d;/^-Xmx/d;/^-XX:MaxDirectMemorySize/d' /opt/sonatype/nexus/bin/nexus.vmoptions
 RUN sed -i -e 's/^nexus-context-path=\//nexus-context-path=\/\${NEXUS_CONTEXT}/g' /opt/sonatype/nexus/etc/nexus-default.properties
 
@@ -34,13 +31,13 @@ RUN groupadd --gid 200 nexus && \
 
 RUN apk remove wget
 
-RUN chown -R nexus:nexus /nexus-data
-VOLUME /nexus-data
+RUN chown -R nexus:nexus /opt/sonatype/sonatype-work/nexus3
+VOLUME /opt/sonatype/sonatype-work/nexus3
 USER nexus
 ENV NEXUS_HOME=/opt/sonatype/nexus \
-    NEXUS_DATA=/nexus-data \
+    NEXUS_DATA=/opt/sonatype/sonatype-work/nexus3 \
     NEXUS_CONTEXT='' \
     SONATYPE_WORK=/opt/sonatype/sonatype-work \
-    INSTALL4J_ADD_VM_PARAMS="-Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=/nexus-data/javaprefs"
+    INSTALL4J_ADD_VM_PARAMS="-Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=/opt/sonatype/sonatype-work/nexus3/javaprefs"
 
 CMD ["/opt/sonatype/nexus/bin/nexus", "run"]
