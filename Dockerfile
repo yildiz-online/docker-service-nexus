@@ -14,9 +14,6 @@ RUN wget --quiet --output-document=/tmp/nexus.tar.gz "${NEXUS_DOWNLOAD_URL}" && 
     mv /tmp/sonatype/nexus-${NEXUS_VERSION} /opt/sonatype/nexus && \
     rm /tmp/nexus.tar.gz
 
-RUN apk remove wget
-
-RUN chown -R nexus:nexus /opt/sonatype/sonatype-work/nexus3
 VOLUME /opt/sonatype/sonatype-work/nexus3
 ENV NEXUS_HOME=/opt/sonatype/nexus \
     NEXUS_DATA=/opt/sonatype/sonatype-work/nexus3 \
