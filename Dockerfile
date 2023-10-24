@@ -14,23 +14,10 @@ RUN wget --quiet --output-document=/tmp/nexus.tar.gz "${NEXUS_DOWNLOAD_URL}" && 
     mv /tmp/sonatype/nexus-${NEXUS_VERSION} /opt/sonatype/nexus && \
     rm /tmp/nexus.tar.gz
 
-RUN groupadd --gid 200 nexus && \
-    useradd \
-      --system \
-      --shell /bin/false \
-      --comment 'Nexus Repository Manager user' \
-      --home-dir /opt/sonatype/nexus \
-      --no-create-home \
-      --no-user-group \
-      --uid 200 \
-      --gid 200 \
-      nexus
-
 RUN apk remove wget
 
 RUN chown -R nexus:nexus /opt/sonatype/sonatype-work/nexus3
 VOLUME /opt/sonatype/sonatype-work/nexus3
-USER nexus
 ENV NEXUS_HOME=/opt/sonatype/nexus \
     NEXUS_DATA=/opt/sonatype/sonatype-work/nexus3 \
     NEXUS_CONTEXT='' \
