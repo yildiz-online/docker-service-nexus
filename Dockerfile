@@ -1,6 +1,6 @@
 # Download, extract Nexus to /tmp/sonatype/nexus
 FROM eclipse-temurin:8-jre-jammy as downloader
-ARG NEXUS_VERSION=3.66.0-02
+ARG NEXUS_VERSION=3.68.0-04
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
 # Download Nexus and other stuff we need later
