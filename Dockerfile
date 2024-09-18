@@ -44,9 +44,6 @@ ENV NEXUS_HOME=/opt/sonatype/nexus \
     NEXUS_DATA=/nexus-data \
     NEXUS_CONTEXT='' \
     SONATYPE_WORK=/opt/sonatype/sonatype-work \
-    INSTALL4J_ADD_VM_PARAMS='-Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=/nexus-data/javaprefs'
-
-CMD ["/opt/sonatype/nexus/bin/nexus", "run"]
     INSTALL4J_ADD_VM_PARAMS="-Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=/nexus-data/javaprefs"
 
 CMD ["/opt/sonatype/nexus/bin/nexus", "run"]
