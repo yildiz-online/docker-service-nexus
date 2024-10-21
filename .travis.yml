@@ -18,4 +18,4 @@ before_install:
 script:
   - docker login -u="moussavdb" --password-stdin <<< "$DOCKER_PASSWORD";
   - docker buildx create --use
-  - docker buildx build --push --platform linux/arm64/v8 --tag moussavdb/service-nexus:latest .
+  - docker buildx build --push --platform linux/arm64/v8 --tag moussavdb/service-nexus:2.73.0.0 .
