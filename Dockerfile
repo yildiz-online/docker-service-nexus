@@ -1,5 +1,5 @@
 FROM eclipse-temurin:17-jre-noble AS downloader
-ARG NEXUS_VERSION=3.74.0-05
+ARG NEXUS_VERSION=3.75.1-01
 ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 
 RUN apt update && apt install -y wget
